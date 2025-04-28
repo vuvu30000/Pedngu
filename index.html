@@ -1,0 +1,600 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giới thiệu bản thân</title>
+<style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #1e1e1e, #3a3a3a);
+            color: white;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            overflow-x: hidden;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(51, 51, 51, 0.8);
+            padding: 15px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            transition: all 0.3s ease;
+        }
+        .navbar a:hover {
+            background-color: #555;
+            border-radius: 10px;
+        }
+
+        .container {
+            margin-top: 100px;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.6s, transform 0.6s;
+            box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.1);
+        }
+        .container.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .profile {
+            position: relative;
+            display: inline-block;
+        }
+        .profile img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+            border: 4px solid white;
+            box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
+        }
+        .profile img:hover {
+            transform: scale(1.15);
+        }
+        
+        .tooltip {
+            visibility: hidden;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            text-align: center;
+            padding: 8px 12px;
+            border-radius: 5px;
+            position: absolute;
+            top: 50%;
+            left: 105%;
+            transform: translateY(-50%);
+            font-size: 14px;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+        .profile:hover .tooltip {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .hobby-list {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .hobby {
+            max-width: 200px;
+            transition: transform 0.3s;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1);
+        }
+        .hobby img {
+            width: 100%;
+            border-radius: 10px;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+        .hobby:hover {
+            transform: scale(1.1);
+        }
+    </style>
+<style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #1a1a1a, #3a3a3a);
+            color: white;
+            margin: 0;
+            padding: 0;
+            opacity: 0;
+            transition: opacity 1s ease-in;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(51, 51, 51, 0.8);
+            padding: 15px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            transition: background 0.3s;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            transition: all 0.3s ease;
+        }
+        .navbar a:hover {
+            background-color: #555;
+            border-radius: 10px;
+        }
+        
+        .container {
+            padding: 100px 20px 20px;
+        }
+        
+        .section, .card {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s, transform 0.8s;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
+        }
+        .fade-in {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+        }
+        
+        .section img, .card img {
+            width: 100%;
+            border-radius: 10px;
+            transition: transform 0.3s ease-in-out;
+        }
+        .section img:hover, .card img:hover {
+            transform: scale(1.05);
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+    </style>
+<style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #1a1a1a, #3a3a3a);
+            color: white;
+            margin: 0;
+            padding: 0;
+            opacity: 0;
+            transition: opacity 1s ease-in;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(51, 51, 51, 0.8);
+            padding: 15px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            transition: background 0.3s;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            transition: all 0.3s ease;
+        }
+        .navbar a:hover {
+            background-color: #555;
+            border-radius: 10px;
+        }
+        
+        .container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            padding: 100px 20px 20px;
+        }
+        
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s, transform 0.8s;
+            box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.2);
+        }
+        .fade-in {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+        }
+        
+        .card img {
+            width: 100%;
+            border-radius: 10px;
+            transition: transform 0.3s ease-in-out;
+        }
+        .card img:hover {
+            transform: scale(1.05);
+        }
+    </style>
+<style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #1a1a1a, #3a3a3a);
+            color: white;
+            margin: 0;
+            padding: 0;
+            opacity: 0;
+            transition: opacity 1s ease-in;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(51, 51, 51, 0.8);
+            padding: 15px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            transition: background 0.3s;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            transition: all 0.3s ease;
+        }
+        .navbar a:hover {
+            background-color: #555;
+            border-radius: 10px;
+        }
+        
+        .container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            padding: 100px 20px 20px;
+        }
+        
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s, transform 0.8s;
+            box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.2);
+            text-align: center;
+        }
+        .fade-in {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+        }
+        
+        .card img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+            transition: transform 0.3s ease-in-out;
+        }
+        .card img:hover {
+            transform: scale(1.1);
+        }
+        
+        .card video {
+            width: 100%;
+            border-radius: 10px;
+            margin-top: 10px;
+            autoplay: true;
+            loop: true;
+            muted: true;
+            playsinline: true;
+        }
+    </style>
+
+<style>
+section {
+    padding-top: 100px;
+    margin-top: -100px;
+}
+</style>
+</head><body>
+
+<div class="navbar">
+    <a href="#gioithieu">Về Tôi</a>
+    <a href="#bongda">Về Bóng Đá</a>
+    <a href="#thanhtich">Các Thành Tích</a>
+    <a href="#clb">Các CLB Hàng Đầu Thế Giới</a>
+</div>
+<section id="gioithieu">
+
+    <div class="navbar">
+        <a href="#">⚽ Giới thiệu về bản thân</a>
+        <div>
+            <a href="trang chủ.html">Về Tôi</a>
+            <a href="đá bóng.html">Về Bóng Đá</a>
+            <a href="thành tích.html">Các Thành Tích</a>
+            <a href="CLB.html">Các CLB Hàng Đầu Thế Giới</a>
+        </div>
+    </div>
+    
+    <div class="container" id="content">
+        <div class="profile">
+            <img src="gg.jpg" alt="Ảnh đại diện" onclick="redirectToFacebook()">
+            <div class="tooltip">Nhấn vào để tới trang Facebook :))</div>
+            <h2>Giới thiệu về bản thân</h2>
+            <p>Xin chào! Tôi là Cao Tuấn Đạt, một người yêu thích công nghệ và bóng đá.</p>
+        </div>
+        
+        <div class="hobbies">
+            <h2>Sở thích cá nhân</h2>
+            <div class="hobby-list">
+                <div class="hobby">
+                    <img src="bb.jpg" alt="Chơi bóng đá">
+                    <p>Chơi bóng đá và theo dõi các trận đấu hấp dẫn.</p>
+                </div>
+                <div class="hobby">
+                    <img src="web.jpg" alt="Lập trình web">
+                    <p>Lập trình và tìm hiểu về thiết kế web.</p>
+                </div>
+                <div class="hobby">
+                    <img src="game.jpg" alt="Chơi game">
+                    <p>Chơi game và đi du lịch.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            setTimeout(() => {
+                document.getElementById("content").classList.add("show");
+            }, 300);
+        });
+
+        function redirectToFacebook() {
+            window.location.href = "https://www.facebook.com/pedrogm209";
+        }
+    </script>
+
+</section>
+<section id="bongda">
+
+    <div class="navbar">
+        <span>⚽ Hành Trình Bóng Đá</span>
+        <div>
+            <a href="trang chủ.html">Về Tôi</a>
+            <a href="đá bóng.html">Về Bóng Đá</a>
+            <a href="thành tích.html">Các Thành Tích</a>
+            <a href="CLB.html">Các CLB Hàng Đầu Thế Giới</a>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="section">
+            <img src="vn.jpg" alt="Khoảnh khắc bóng đá">
+        </div>
+        
+        <h2>Các Trận Đấu Đáng Nhớ</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>World Cup 2018</h3>
+                <img src="wc.jpg" alt="World Cup 2018">
+                <p>Trận chung kết World Cup 2018 giữa Pháp và Croatia.</p>
+            </div>
+            <div class="card">
+                <h3>Champions League 2018</h3>
+                <img src="c1.jpg" alt="Champions League 2018">
+                <p>Trận chung kết giữa Real Madrid và Liverpool.</p>
+            </div>
+        </div>
+        
+        <h2>Real Madrid</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Về đội bóng</h3>
+                <img src="re.jpeg" alt="Real Madrid">
+                <p>Real Madrid là một trong những CLB vĩ đại nhất thế giới.</p>
+            </div>
+            <div class="card">
+                <h3>Lối chơi</h3>
+                <img src="m.jpg" alt="Lối chơi Real Madrid">
+                <p>Real Madrid luôn được biết đến với lối chơi tấn công.</p>
+            </div>
+        </div>
+        
+        <h2>Luyện tập</h2>
+        <div class="section">
+            <img src="t.jpg" alt="Luyện tập">
+            <p>Chế độ luyện tập nghiêm ngặt giúp cầu thủ duy trì phong độ.</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.body.style.opacity = "1";
+            const sections = document.querySelectorAll(".section, .card");
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("fade-in");
+                    }
+                });
+            }, { threshold: 0.3 });
+            sections.forEach(section => observer.observe(section));
+        });
+    </script>
+
+</section>
+<section id="thanhtich">
+
+    <div class="navbar">
+        <span>🏆 Thành Tích Bóng Đá</span>
+        <div>
+            <a href="trang chủ.html">Về Tôi</a>
+            <a href="đá bóng.html">Về Bóng Đá</a>
+            <a href="thành tích.html">Các Thành Tích</a>
+            <a href="CLB.html">Các CLB Hàng Đầu Thế Giới</a>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="card">
+            <h3>Vô địch</h3>
+            <img src="c1.jpg" alt="Vô địch">
+            <p>Real Madrid đã giành 14 danh hiệu Champions League...</p>
+        </div>
+        <div class="card">
+            <h3>Tiền Vệ Hay Nhất</h3>
+            <img src="mck.jpg" alt="Tiền Vệ Hay Nhất">
+            <p>Luka Modrić - Quả bóng Vàng 2018, nhạc trưởng của Real Madrid...</p>
+        </div>
+        <div class="card">
+            <h3>Cầu Thủ Đắt Giá Nhất</h3>
+            <img src="tt.jpg" alt="Cầu Thủ Đắt Giá Nhất">
+            <p>Những thương vụ đắt giá nhất trong lịch sử của Real Madrid...</p>
+        </div>
+        <div class="card">
+            <h3>Tiền Đạo Xuất Sắc Nhất</h3>
+            <img src="bbc.jpg" alt="Tiền Đạo Xuất Sắc Nhất">
+            <p>Cristiano Ronaldo - cầu thủ ghi nhiều bàn nhất lịch sử Real Madrid...</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.body.style.opacity = "1";
+            const cards = document.querySelectorAll(".card");
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("fade-in");
+                    }
+                });
+            }, { threshold: 0.3 });
+            cards.forEach(card => observer.observe(card));
+        });
+    </script>
+
+</section>
+<section id="clb">
+
+    <div class="navbar">
+        <span>⚽ Các Câu Lạc Bộ Hàng Đầu Thế Giới</span>
+        <div>
+              <a href="trang chủ.html">Về Tôi</a>
+            <a href="đá bóng.html">Về Bóng Đá</a>
+            <a href="thành tích.html">Các Thành Tích</a>
+            <a href="CLB.html">Các CLB Hàng Đầu Thế Giới</a>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="card">
+            <img src="https://upload.wikimedia.org/wikipedia/vi/thumb/c/c7/Logo_Real_Madrid.svg/79px-Logo_Real_Madrid.svg.png?20080607135911" alt="Real Madrid">
+            <h3>Real Madrid</h3>
+            <p>CLB thành công nhất Champions League với 14 danh hiệu.</p>
+            <video autoplay loop muted playsinline>
+                <source src="RMA.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="card">
+            <img src="https://upload.wikimedia.org/wikipedia/vi/thumb/9/91/FC_Barcelona_logo.svg/1200px-FC_Barcelona_logo.svg.png" alt="Barcelona">
+            <h3>Barcelona</h3>
+            <p>Đội bóng với triết lý tiki-taka và nhiều danh hiệu La Liga.</p>
+            <video autoplay loop muted playsinline>
+                <source src="BC.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="card">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/FC_Bayern_M%C3%BCnchen_logo_%282017%29.svg/512px-FC_Bayern_M%C3%BCnchen_logo_%282017%29.svg.png" alt="Bayern Munich">
+            <h3>Bayern Munich</h3>
+            <p>Gã khổng lồ nước Đức với nhiều chức vô địch Bundesliga.</p>
+            <video autoplay loop muted playsinline>
+                <source src="BM.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="card">
+            <img src="https://upload.wikimedia.org/wikipedia/vi/thumb/1/1d/Manchester_City_FC_logo.svg/190px-Manchester_City_FC_logo.svg.png" alt="Manchester City">
+            <h3>Manchester City</h3>
+            <p>Đội bóng thống trị Ngoại Hạng Anh trong những năm gần đây.</p>
+            <video autoplay loop muted playsinline>
+                <source src="MC.mp4" type="video/mp4">
+            </video>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.body.style.opacity = "1";
+            const cards = document.querySelectorAll(".card");
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("fade-in");
+                    }
+                });
+            }, { threshold: 0.3 });
+            cards.forEach(card => observer.observe(card));
+        });
+    </script>
+
+</section>
+
+<script>
+// Thêm hiệu ứng xuất hiện như gốc
+document.addEventListener("DOMContentLoaded", function () {
+    document.body.style.opacity = "1";
+    const elements = document.querySelectorAll(".section, .card");
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("fade-in");
+            }
+        });
+    }, { threshold: 0.3 });
+    elements.forEach(element => observer.observe(element));
+});
+</script>
+</body></html>
